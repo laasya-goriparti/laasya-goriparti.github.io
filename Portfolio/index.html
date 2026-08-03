@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Laasya</title>
+<meta name="description" content="Laasya — neuroscience, neurotech, pediatric care." />
+<script>
+  (function () {
+    var stored = localStorage.getItem("theme");
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", stored || (prefersDark ? "dark" : "light"));
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-mark" aria-hidden="true"></span>
+      laasya
+    </a>
+    <nav class="nav-links">
+      <button id="theme-toggle" class="theme-toggle" aria-label="toggle light/dark theme">◐</button>
+      <div class="nav-menu">
+        <button id="menu-toggle" class="menu-toggle" aria-label="open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="menu-dropdown" id="menu-dropdown">
+          <a href="about.html">about</a>
+          <a href="research.html">research</a>
+          <a href="writing.html">writing</a>
+          <a href="journal.html">journal</a>
+          <a href="projects.html">projects</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <!-- INTRO -->
+    <section class="intro">
+      <p class="eyebrow"><span id="today"></span></p>
+      <p>
+        hey — i'm laasya. sophomore studying neuroscience at UT Austin with an
+        entrepreneurship minor. i'm building toward one long-term thing: a
+        vertically integrated, patient-centric neurotechnology innovation
+        ecosystem — spanning clinical care, research, product development,
+        regulatory advocacy, venture capital, and an accelerator — that lets
+        neurodivergent kids live independent, safe, fulfilling lives.
+      </p>
+      <p>
+        most of my time right now is split between researching and developing
+        non-invasive brain computer interfaces &amp; neuromodulatory
+        assistive technologies for populations with neurodevelopmental and
+        neurodegenerative conditions, working at a pediatric neurology
+        clinic, building my pediatric neurotech wearable startup, scouting
+        for medtech/digital health VCs, working at a few medical and
+        consumer neurotech startups, organizing pop-up pediatric neuro
+        clinics for underserved communities, and hosting IRL events across
+        austin, sf &amp; nyc to bring patient-centric researchers, founders,
+        healthcare providers, advocates &amp; investors into rooms that
+        shape the future of neurotechnology, especially for pediatric
+        applications.
+      </p>
+      <p>
+        outside of neurotech, I'm also an equally avid and passionate social
+        entrepreneur working to reform systems that enable intergenerational
+        trauma and socioeconomic and humanitarian injustices through
+        building infrastructure for entrepreneurial upward mobility. I
+        believe through identifying and reforming the suppressive,
+        dysregulated, and destructive forces of our minds and society, I
+        believe I can create an impact that enables the pursuit of peace,
+        opportunity, and happiness for generations to come.
+      </p>
+    </section>
+
+    <!-- SLIDER 1 — full width, auto-advances every 3s. Edit photos.js to add more. -->
+    <div class="slider" data-group="main"></div>
+
+    <!-- SOCIAL / LINKS -->
+    <div class="links-row">
+      <a href="mailto:laasya.goriparti@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/laasya-goriparti" target="_blank" rel="noopener">linkedin</a>
+    </div>
+
+    <!-- CURRENT WORK -->
+    <section class="current-work">
+      <p>
+        founder &amp; CEO of Unmute — building a social innovation
+        accelerator + "renaissance collective" model that enables true
+        upward mobility, piloting with cohorts in the most untraditional and
+        undiscovered talent pools around the world.
+      </p>
+      <p>
+        research assistant @ Wang Lab — FUS/EEG/EGG gut-brain research for
+        gastric motility disorders.
+      </p>
+      <p>
+        medical assistant @ pediatric neurology center — supporting clinical
+        operations &amp; patient care, coordinating referrals, appointment
+        scheduling, faxes, genetics orders, etc.
+      </p>
+      <p>
+        Nucleate Dojo House Lead @ Nucleate HQ (Dojo) — building biotech
+        hackerhouses across SF, Boston, Austin.
+      </p>
+      <p>
+        tech sourcing associate @ Nucleate Texas — scouting for early-stage
+        biotech &amp; climate-tech startups in Austin to host at our
+        accelerator, collaborating with researchers, physicians, VCs,
+        founders &amp; students to build infrastructure to support biotech
+        innovation across Texas.
+      </p>
+      <p>
+        vice president of outreach @ LHNT — hosting workshops, conferences,
+        hackathons, and courses for neurotech enthusiasts.
+      </p>
+    </section>
+
+    <!-- SLIDER 2 — same photos.js group; add a new group in photos.js for different images here -->
+    <div class="slider" data-group="main"></div>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="achievements">
+      <p class="section-label">previously</p>
+      <div class="accomplishments-scroll" id="accomplishments-scroll">
+        <ul class="accomplishments-list" id="accomplishments-list">
+          <!-- injected from accomplishments.js -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- POLAROID SCATTER — edit polaroids.js to add photos or new clusters -->
+    <div class="polaroid-scatter" data-group="main"></div>
+
+    <!-- QUESTIONS -->
+    <section class="ask">
+      <p class="section-label">ask</p>
+      <p class="ask-sub">questions about the research, the startup, or the path — i try to answer within a few days.</p>
+      <form class="ask-form" id="ask-form">
+        <textarea id="ask-input" rows="3" placeholder="ask something..."></textarea>
+        <button type="submit">send</button>
+      </form>
+      <p class="ask-note" id="ask-note"></p>
+    </section>
+
+    <footer class="foot">
+      <p>laasya, built by hand.</p>
+    </footer>
+
+  </main>
+
+  <script src="photos.js"></script>
+  <script src="polaroids.js"></script>
+  <script src="accomplishments.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
