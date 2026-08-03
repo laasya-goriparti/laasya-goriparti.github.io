@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>research — laasya</title>
+<script>
+  (function () {
+    var stored = localStorage.getItem("theme");
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", stored || (prefersDark ? "dark" : "light"));
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-mark" aria-hidden="true"></span>
+      laasya
+    </a>
+    <nav class="nav-links">
+      <button id="theme-toggle" class="theme-toggle" aria-label="toggle light/dark theme">◐</button>
+      <div class="nav-menu">
+        <button id="menu-toggle" class="menu-toggle" aria-label="open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="menu-dropdown" id="menu-dropdown">
+          <a href="about.html">about</a>
+          <a href="research.html">research</a>
+          <a href="writing.html">writing</a>
+          <a href="journal.html">journal</a>
+          <a href="projects.html">projects</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <p class="eyebrow">research</p>
+
+    <section class="current-work">
+      <p><strong>Wang Lab, UT Austin</strong> — materials science research +
+      FUS/EEG/EGG gut-brain research for gastric motility disorders.
+      presented a research poster @ College of Natural Science's
+      Undergraduate Research Forum.</p>
+
+      <p><strong>lit review on music neurostimulation for OCD</strong>, w/
+      Dr. Nmai + Nico — building a mood/meditation music therapy app w/ Suno
+      AI integrated and documenting it; designing the study + IRB protocol
+      and securing Columbia/Juilliard affiliation for phase 2.</p>
+
+      <p><strong>paper identifying a biomarker for cognitive dissonance</strong>
+      w/ Meta TribeV2 model — building a cognitive dissonance interventionary
+      extension/app based on the research.</p>
+
+      <p><strong>lit review on speech/intent decoding neurotech innovations</strong>
+      in academia and industry — designing replicate projects for each core
+      innovation and documenting them.</p>
+
+      <p><strong>lit review on textile sensors/electrode materials</strong> —
+      designing an IRB proposal to experiment further @ Wang Lab.</p>
+
+      <p><strong>lit review on stimming/aggression control in autism</strong> —
+      product ideation for rumbling-stage detection w/ the startup team.</p>
+
+      <p><strong>lit review on speech + communication within the nonverbal ASD population</strong>
+      (RPM) — designing an IRB proposal to explore further.</p>
+
+      <p><strong>lit review on altered sensory + cognitive systems within low-functioning ASD</strong>
+      (RPM) — designing an IRB proposal to explore further.</p>
+    </section>
+
+    <section class="achievements">
+      <p class="section-label">drafts &amp; documents</p>
+      <ul>
+        <li>patient case report + poster on Parkinson's TMEM230 gene, for AAN conference</li>
+        <li>OCD lit review — device-based section (draft in progress)</li>
+        <li>Wang Lab textile sensors — lit review and study design (draft in progress)</li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <p>laasya, built by hand.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
