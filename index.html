@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Laasya</title>
+<meta name="description" content="Laasya — neuroscience, neurotech, pediatric care." />
+<script>
+  (function () {
+    var stored = localStorage.getItem("theme");
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", stored || (prefersDark ? "dark" : "light"));
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-mark" aria-hidden="true"></span>
+      laasya
+    </a>
+    <nav class="nav-links">
+      <button id="theme-toggle" class="theme-toggle" aria-label="toggle light/dark theme">◐</button>
+      <div class="nav-menu">
+        <button id="menu-toggle" class="menu-toggle" aria-label="open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="menu-dropdown" id="menu-dropdown">
+          <a href="about.html">my story</a>
+          <a href="research.html">research</a>
+          <a href="journal.html">journal</a>
+          <a href="projects.html">projects</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <!-- INTRO -->
+    <section class="intro">
+      <p class="eyebrow"><span id="today"></span></p>
+      <p>
+        hey, i'm Laasya, a sophomore studying neuroscience + entrepreneurship
+        at UT Austin. i'm working towards building an integrated
+        neurotechnology innovation and adoption ecosystem that spans
+        clinical care, research, development, and venture capital to
+        advance the frontier of pediatric neurological care.
+      </p>
+      <p>
+        most of my time right now is split between researching and developing
+        non-invasive brain computer interfaces &amp; neuromodulatory
+        assistive technologies for populations with neurodevelopmental and
+        neurodegenerative conditions, working at a pediatric neurology
+        clinic, building my pediatric neurotech wearable startup, scouting
+        for medtech/digital health VCs, working at a few medical and
+        consumer neurotech startups, organizing pop-up pediatric neuro
+        clinics for underserved communities, and hosting IRL events across
+        austin, sf &amp; nyc to bring patient-centric researchers, founders,
+        healthcare providers, advocates &amp; investors into rooms that
+        shape the future of neurotechnology, especially for pediatric
+        applications.
+      </p>
+      <p>
+        outside of neurotech, I'm also an equally avid and passionate social
+        entrepreneur working to reform systems that enable intergenerational
+        trauma and socioeconomic and humanitarian injustices through
+        building infrastructure for entrepreneurial upward mobility. through
+        identifying &amp; reforming the suppressive, dysregulated, and
+        destructive forces of our minds and society, I hope to create an
+        impact that enables humanity's fair pursuit of peace, opportunity,
+        and happiness for generations to come.
+      </p>
+    </section>
+
+    <!-- SLIDER 1 — full width, auto-advances every 3s. Edit photos.js to add more. -->
+    <div class="slider" data-group="main"></div>
+
+    <!-- SOCIAL / LINKS -->
+    <div class="links-row">
+      <a href="mailto:laasya.goriparti@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/laasya-goriparti" target="_blank" rel="noopener">linkedin</a>
+    </div>
+
+    <!-- CURRENT WORK — sticky stacking cards -->
+    <section class="stack-section">
+      <p class="section-label">currently</p>
+      <div class="stack-wrap">
+        <div class="stack-card" style="--i:0">
+          <p>
+            founder &amp; ceo of unmute: building a social innovation
+            accelerator + "renaissance collective" model that enables true
+            upward mobility, piloting with cohorts in the most untraditional
+            and undiscovered talent pools around the world.
+          </p>
+        </div>
+        <div class="stack-card" style="--i:1">
+          <p>
+            research assistant @ wang lab: fus/eeg/egg gut-brain research
+            for gastric motility disorders, assisting in product r&amp;d
+            and clinical experimentation. also researching non-invasive
+            fus-based neuromodulatory wearable designs for epilepsy &amp;
+            parkinsons patient populations.
+          </p>
+        </div>
+        <div class="stack-card" style="--i:2">
+          <p>
+            medical assistant @ pediatric neurology center: supporting
+            clinical operations &amp; patient care, coordinating referrals,
+            appointment scheduling, faxes, genetics orders, etc.
+          </p>
+        </div>
+        <div class="stack-card" style="--i:3">
+          <p>
+            nucleate dojo house lead @ nucleate hq (dojo): building biotech
+            hackerhouses across sf, boston, austin.
+          </p>
+        </div>
+        <div class="stack-card" style="--i:4">
+          <p>
+            tech sourcing associate @ nucleate texas: scouting for
+            early-stage biotech &amp; climate-tech startups in austin to
+            host at our accelerator, collaborating with researchers,
+            physicians, vcs, founders &amp; students to build infrastructure
+            to support biotech innovation across texas.
+          </p>
+        </div>
+        <div class="stack-card" style="--i:5">
+          <p>
+            vice president of outreach @ longhorn neurotech: hosting
+            workshops, conferences, hackathons, and courses for neurotech
+            enthusiasts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDER 2 — uses the "secondary" group in photos.js -->
+    <div class="slider" data-group="secondary"></div>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="achievements">
+      <p class="section-label">previously</p>
+      <div class="accomplishments-scroll" id="accomplishments-scroll">
+        <ul class="accomplishments-list" id="accomplishments-list">
+          <!-- injected from accomplishments.js -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- SHOWCASE CAROUSEL — edit showcase.js to add photos/videos and links -->
+    <div class="showcase-carousel">
+      <div class="showcase-track" id="showcase-track"></div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <section class="ask">
+      <p class="ask-sub">message me! feel free to ask questions, bounce ideas, or reach out if you want to collab :)</p>
+      <form class="ask-form" id="ask-form">
+        <textarea id="ask-input" rows="3" placeholder="send a message..."></textarea>
+        <button type="submit">send</button>
+      </form>
+      <p class="ask-note" id="ask-note"></p>
+    </section>
+
+    <footer class="foot">
+      <p>laasya, built with passion.</p>
+    </footer>
+
+  </main>
+
+  <script src="photos.js"></script>
+  <script src="showcase.js"></script>
+  <script src="accomplishments.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
