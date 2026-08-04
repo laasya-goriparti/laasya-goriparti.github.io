@@ -20,8 +20,7 @@
   order in the carousel.
 */
 const SHOWCASE_ITEMS = [
-  { file: "showcaseone.jpg", link: "", caption: "hosted a women founders dinner w/ foundess @ sxsw" },
-  { file: "showcasetwo.jpg", link: "", caption: "hosted art therapy events @ neurodivergent care homes" },
-  { file: "showcasethree.jpg", link: "", caption: "hosted a hackerhouse @ a16z sf tech week" },
-  { file: "showcasefour.jpg", link: "", caption: "hosted neural network mixer w/ neuronyc @ a16z nyc tech week" }
+  { file: "showcaseone.jpg", link: "", caption: "" },
+  { file: "showcasetwo.jpg", link: "", caption: "" },
+  { file: "showcasethree.jpg", link: "", caption: "" }
 ];

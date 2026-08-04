@@ -39,6 +39,14 @@ function preloadMedia(file) {
   });
 }
 
+// ----- shared sound state for the hero video (persisted, default muted) -----
+const soundState = { on: localStorage.getItem("soundOn") === "true" };
+function applySoundToHeroVideos() {
+  document.querySelectorAll("#hero-media video").forEach(function (v) {
+    v.muted = !soundState.on;
+  });
+}
+
 // ----- intro paragraphs fade in as you scroll to them -----
 (function setupIntroFade() {
   const paragraphs = document.querySelectorAll(".intro p");
@@ -82,6 +90,8 @@ function preloadMedia(file) {
         ? `<video src="assets/${r.file}" class="${activeClass}" autoplay muted loop playsinline></video>`
         : `<img src="assets/${r.file}" class="${activeClass}" alt="" />`;
     }).join("");
+
+    if (container.id === "hero-media") applySoundToHeroVideos();
 
     if (reduceMotion || valid.length < 2) continue;
 
@@ -190,6 +200,25 @@ function preloadMedia(file) {
     const next = current === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
+  });
+})();
+
+// ----- sound toggle (hero video only; defaults to muted) -----
+(function setupSoundToggle() {
+  const btn = document.getElementById("sound-toggle");
+  if (!btn) return;
+
+  function updateIcon() {
+    btn.textContent = soundState.on ? "🔊" : "🔇";
+    btn.setAttribute("aria-label", soundState.on ? "mute video sound" : "unmute video sound");
+  }
+  updateIcon();
+
+  btn.addEventListener("click", function () {
+    soundState.on = !soundState.on;
+    localStorage.setItem("soundOn", soundState.on ? "true" : "false");
+    updateIcon();
+    applySoundToHeroVideos();
   });
 })();
 
