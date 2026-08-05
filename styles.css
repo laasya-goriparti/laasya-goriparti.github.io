@@ -40,7 +40,6 @@ html { background: var(--paper); }
 
 body {
   margin: 0;
-  overflow-x: hidden; /* safety net for the wide-breakout hero statement below */
   background-color: var(--paper);
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
@@ -177,9 +176,11 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
 /* the hero nav (home page) makes its direct links white for contrast over
    the photo/video, but that selector was also matching the dropdown menu
    links nested inside it, making them invisible on a light-mode white
-   dropdown card. force the dropdown back to normal readable colors. */
-.hero-nav .menu-dropdown a { color: var(--ink-soft); }
-.hero-nav .menu-dropdown a:hover { background: var(--paper); color: var(--signal); }
+   dropdown card. force the dropdown back to normal readable colors —
+   extra class in the selector below intentionally raises specificity so
+   this reliably wins regardless of where it sits in the stylesheet. */
+.hero-nav .nav-menu .menu-dropdown a { color: var(--ink-soft); }
+.hero-nav .nav-menu .menu-dropdown a:hover { background: var(--paper); color: var(--signal); }
 
 /* ---------------- Hero (full-bleed slider + overlaid nav, like jia.build) ---------------- */
 .hero {
@@ -291,16 +292,11 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
 .hero-statement {
   font-family: var(--hero-font);
   font-weight: 600;
-  font-size: clamp(0.92rem, 2.6vw, 1.05rem);
-  line-height: 1.15;
+  font-size: 1rem;
+  line-height: 1.3;
   letter-spacing: 0.01em;
-  text-align: center;
+  text-align: left;
   color: var(--ink);
-  width: 90vw;
-  max-width: 860px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   padding-bottom: 0.5rem;
 }
 
@@ -604,12 +600,15 @@ html[data-theme="dark"] .journal-card {
 .journal-empty { color: var(--muted); font-style: italic; }
 
 /* ---------------- Ask ---------------- */
+.ask { text-align: center; }
 .ask-sub { color: var(--muted); font-size: 0.98rem; margin: 0 0 1rem; }
 .ask-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.75rem;
   max-width: 480px;
+  margin: 0 auto;
 }
 .ask-form textarea {
   font-family: var(--body-font);
@@ -620,10 +619,11 @@ html[data-theme="dark"] .journal-card {
   background: var(--card);
   color: var(--ink);
   resize: vertical;
+  width: 100%;
 }
 .ask-form textarea:focus-visible { outline: 2px solid var(--signal); }
 .ask-form button {
-  align-self: flex-start;
+  align-self: center;
   font-family: var(--body-font);
   font-style: italic;
   font-size: 0.95rem;
@@ -641,7 +641,6 @@ html[data-theme="dark"] .journal-card {
 .foot {
   margin-top: 4rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
   font-family: var(--body-font);
   font-style: italic;
   font-size: 0.9rem;

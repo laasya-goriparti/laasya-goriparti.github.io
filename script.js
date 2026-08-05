@@ -218,7 +218,7 @@ function setupAutoScroll(el, axis, speed) {
   requestAnimationFrame(step);
 }
 
-setupAutoScroll(document.getElementById("accomplishments-scroll"), "y", 18);
+setupAutoScroll(document.getElementById("accomplishments-scroll"), "y", 28);
 setupAutoScroll(document.querySelector(".showcase-carousel"), "x", 28);
 
 // ----- hamburger nav menu -----

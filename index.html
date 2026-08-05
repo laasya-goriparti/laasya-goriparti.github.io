@@ -8,8 +8,7 @@
 <script>
   (function () {
     var stored = localStorage.getItem("theme");
-    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.setAttribute("data-theme", stored || (prefersDark ? "dark" : "light"));
+    document.documentElement.setAttribute("data-theme", stored || "dark");
   })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,12 +37,12 @@
             <span></span><span></span><span></span>
           </button>
           <div class="menu-dropdown" id="menu-dropdown">
-            <a href="about.html">my story</a>
-            <a href="research.html">research</a>
-            <a href="journal.html">journey</a>
-            <a href="press.html">press</a>
-            <a href="projects.html">projects</a>
-          </div>
+          <a href="about.html">my story</a>
+          <a href="journal.html">journey</a>
+          <a href="research.html">research</a>
+          <a href="projects.html">projects</a>
+          <a href="press.html">press</a>
+        </div>
         </div>
       </nav>
     </header>
@@ -160,6 +159,7 @@
     </section>
 
     <!-- SHOWCASE CAROUSEL — edit showcase.js to add photos/videos and links -->
+    <p class="section-label">impact in action</p>
     <div class="showcase-carousel">
       <div class="showcase-track" id="showcase-track"></div>
     </div>
