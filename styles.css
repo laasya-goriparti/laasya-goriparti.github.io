@@ -360,6 +360,10 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
   -webkit-mask-image: linear-gradient(to right, transparent, black 9%, black 91%, transparent);
   mask-image: linear-gradient(to right, transparent, black 9%, black 91%, transparent);
 }
+/* halves the gap specifically between the "impact in action" label and the
+   showcase carousel, so the label reads as directly captioning the photos
+   below it rather than floating separately */
+.section-label + .showcase-carousel { margin-top: 1.3rem; }
 .showcase-carousel::-webkit-scrollbar { height: 5px; }
 .showcase-carousel::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
 .showcase-carousel { scrollbar-width: thin; scrollbar-color: var(--muted) transparent; }
