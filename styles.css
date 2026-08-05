@@ -16,8 +16,8 @@
 
   --body-font: "EB Garamond", Garamond, Georgia, serif;
   --head-font: Georgia, "EB Garamond", serif;
-  --hero-font: "Instrument Serif", Georgia, serif;
-  --sans-font: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+  --hero-font: "EB Garamond", Garamond, Georgia, serif;
+  --sans-font: "EB Garamond", Garamond, Georgia, serif;
 
   --measure: 640px;
 }
@@ -40,6 +40,7 @@ html { background: var(--paper); }
 
 body {
   margin: 0;
+  overflow-x: hidden; /* safety net for the wide-breakout hero statement below */
   background-color: var(--paper);
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
@@ -116,6 +117,9 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
 .icon-toggle:hover { color: var(--signal); border-color: var(--signal); }
 .theme-toggle:focus-visible,
 .icon-toggle:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.icon-toggle svg { width: 15px; height: 15px; display: block; }
+.icon-toggle svg path,
+.icon-toggle svg polygon { fill: currentColor; stroke: currentColor; }
 
 .nav-menu { position: relative; }
 .menu-toggle {
@@ -169,6 +173,13 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
   font-size: 0.98rem;
 }
 .menu-dropdown a:hover { background: var(--paper); color: var(--signal); }
+
+/* the hero nav (home page) makes its direct links white for contrast over
+   the photo/video, but that selector was also matching the dropdown menu
+   links nested inside it, making them invisible on a light-mode white
+   dropdown card. force the dropdown back to normal readable colors. */
+.hero-nav .menu-dropdown a { color: var(--ink-soft); }
+.hero-nav .menu-dropdown a:hover { background: var(--paper); color: var(--signal); }
 
 /* ---------------- Hero (full-bleed slider + overlaid nav, like jia.build) ---------------- */
 .hero {
@@ -279,21 +290,24 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
    large centered serif, generous line spacing */
 .hero-statement {
   font-family: var(--hero-font);
-  font-size: clamp(1.7rem, 4vw, 2.5rem);
-  line-height: 1.35;
+  font-weight: 600;
+  font-size: clamp(0.92rem, 2.6vw, 1.05rem);
+  line-height: 1.15;
   letter-spacing: 0.01em;
   text-align: center;
   color: var(--ink);
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 90vw;
+  max-width: 860px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   padding-bottom: 0.5rem;
 }
 
-/* the longer paragraphs, laid out like jia's intro block but in Poppins */
+/* the longer paragraphs, laid out like jia's intro block */
 .intro-body {
   font-family: var(--sans-font);
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.75;
   text-align: left;
@@ -344,10 +358,19 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
   overflow-y: visible;
   margin: 3.5rem 0;
   padding: 1rem 0.25rem 1.75rem;
+  /* subtle disappearing-into-the-edge shadow effect as tiles scroll past,
+     matching the reference recording: a noticeably wide fade zone, not a
+     hairline one */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 9%, black 91%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 9%, black 91%, transparent);
 }
+.showcase-carousel::-webkit-scrollbar { height: 5px; }
+.showcase-carousel::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
+.showcase-carousel { scrollbar-width: thin; scrollbar-color: var(--muted) transparent; }
 .showcase-track {
   display: flex;
   gap: 1.5rem;
+  width: max-content;
 }
 .showcase-tile {
   flex: 0 0 auto;
@@ -375,13 +398,17 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
   font-family: var(--body-font);
   font-style: italic;
   font-size: 0.85rem;
+  line-height: 1.3;
   color: var(--ink-soft);
   text-align: center;
-  margin: 0.6rem 0 0;
+  margin: 0.6rem auto 0;
+  max-width: 88%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-.showcase-carousel::-webkit-scrollbar { height: 6px; }
-.showcase-carousel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
-.showcase-carousel { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+
 
 /* ---------------- Links row ---------------- */
 .links-row {
@@ -403,7 +430,8 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
 }
 .stack-card {
   position: sticky;
-  top: calc(24px + var(--i, 0) * 16px);
+  top: 96px;
+  z-index: calc(var(--i, 0) + 1);
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -445,7 +473,12 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
   -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
   mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
   padding: 0.5rem 0;
+  scrollbar-gutter: stable;
 }
+/* scrollbar acts as the manual "slider bar" control while auto-scroll runs */
+.accomplishments-scroll::-webkit-scrollbar { width: 6px; }
+.accomplishments-scroll::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
+.accomplishments-scroll { scrollbar-width: thin; scrollbar-color: var(--muted) transparent; }
 .accomplishments-list {
   list-style: none;
   margin: 0;
@@ -460,12 +493,64 @@ a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
 }
 .accomplishments-list li:last-child { border-bottom: none; }
 
-/* thin scrollbar so it doesn't look like a stock browser widget */
-.accomplishments-scroll::-webkit-scrollbar { width: 5px; }
-.accomplishments-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
-.accomplishments-scroll { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+/* ---------------- Journey (substack + medium, stacking-card style) ---------------- */
+.journey-intro {
+  color: var(--ink-soft);
+  margin: 0 0 1.75rem;
+}
+.journey-section + .journey-section { margin-top: 3.5rem; }
+.article-stack-wrap { position: relative; }
+.article-stack-card {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+  text-decoration: none;
+  color: var(--ink);
+}
+.article-stack-thumb {
+  flex: 0 0 96px;
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--line);
+}
+.article-stack-body { min-width: 0; }
+.article-stack-date {
+  font-family: var(--body-font);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0 0 0.3rem;
+}
+.article-stack-title {
+  font-family: var(--head-font);
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin: 0 0 0.3rem;
+  line-height: 1.3;
+}
+.article-stack-desc {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.journal-empty { color: var(--muted); font-style: italic; }
 
-/* ---------------- Journal (glassmorphic Medium cards) ---------------- */
+/* ---------------- Journal (legacy glassmorphic Medium cards, unused now but kept for reference) ---------------- */
 .journal-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));

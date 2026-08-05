@@ -161,15 +161,65 @@ function applySoundToHeroVideos() {
 })();
 
 // makes scrolling the accomplishments box feel faster/easier than the
-// browser's tiny default per-notch scroll amount
+// browser's tiny default per-notch scroll amount, on top of the auto-scroll
+// set up below
 (function setupAccomplishmentsScroll() {
   const box = document.getElementById("accomplishments-scroll");
   if (!box) return;
   box.addEventListener("wheel", function (e) {
     e.preventDefault();
     box.scrollTop += e.deltaY * 2.4;
+    notifyManualScroll(box);
   }, { passive: false });
 })();
+
+// ----- generic auto-scroll helper: slowly scrolls a container, pauses when
+// the person interacts manually (drag/scrollbar/wheel/touch), resumes a
+// beat later. Works for both the vertical accomplishments list and the
+// horizontal showcase carousel. -----
+const autoScrollPauseUntil = new WeakMap();
+function notifyManualScroll(el) {
+  autoScrollPauseUntil.set(el, Date.now() + 2800);
+}
+function setupAutoScroll(el, axis, speed) {
+  if (!el) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  ["wheel", "touchstart", "mousedown"].forEach(function (evt) {
+    el.addEventListener(evt, function () { notifyManualScroll(el); }, { passive: true });
+  });
+
+  let last = null;
+  function step(ts) {
+    if (last === null) last = ts;
+    const dt = ts - last;
+    last = ts;
+
+    const pausedUntil = autoScrollPauseUntil.get(el) || 0;
+    if (Date.now() >= pausedUntil) {
+      const maxScroll = axis === "x"
+        ? el.scrollWidth - el.clientWidth
+        : el.scrollHeight - el.clientHeight;
+
+      if (maxScroll > 1) {
+        const delta = (speed * dt) / 1000;
+        if (axis === "x") {
+          if (el.scrollLeft >= maxScroll - 1) el.scrollLeft = 0;
+          else el.scrollLeft += delta;
+        } else {
+          if (el.scrollTop >= maxScroll - 1) el.scrollTop = 0;
+          else el.scrollTop += delta;
+        }
+      }
+    }
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+setupAutoScroll(document.getElementById("accomplishments-scroll"), "y", 18);
+setupAutoScroll(document.querySelector(".showcase-carousel"), "x", 28);
 
 // ----- hamburger nav menu -----
 (function setupMenu() {
@@ -204,12 +254,17 @@ function applySoundToHeroVideos() {
 })();
 
 // ----- sound toggle (hero video only; defaults to muted) -----
+// simple minimalist speaker icons, drawn as inline SVG so they always match
+// the site's line-based icon style instead of relying on emoji rendering
+const SOUND_ICON_ON = `<svg viewBox="0 0 24 24" fill="none"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M19 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+const SOUND_ICON_OFF = `<svg viewBox="0 0 24 24" fill="none"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+
 (function setupSoundToggle() {
   const btn = document.getElementById("sound-toggle");
   if (!btn) return;
 
   function updateIcon() {
-    btn.textContent = soundState.on ? "🔊" : "🔇";
+    btn.innerHTML = soundState.on ? SOUND_ICON_ON : SOUND_ICON_OFF;
     btn.setAttribute("aria-label", soundState.on ? "mute video sound" : "unmute video sound");
   }
   updateIcon();

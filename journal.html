@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>journal — laasya</title>
+<title>journey — laasya</title>
 <script>
   (function () {
     var stored = localStorage.getItem("theme");
@@ -31,7 +31,8 @@
         <div class="menu-dropdown" id="menu-dropdown">
           <a href="about.html">my story</a>
           <a href="research.html">research</a>
-          <a href="journal.html">journal</a>
+          <a href="journal.html">journey</a>
+            <a href="press.html">press</a>
           <a href="projects.html">projects</a>
         </div>
       </div>
@@ -39,14 +40,30 @@
   </header>
 
   <main class="page">
-    <p class="eyebrow">journal</p>
-    <p style="color: var(--ink-soft); margin-bottom: 2rem;">
-      read more about my learnings, introspection &amp; journey across all
-      things neurotech + social entrepreneurship on
-      <a href="https://medium.com/@laasya.goriparti" target="_blank" rel="noopener">medium</a>.
-    </p>
+    <p class="eyebrow">journey</p>
 
-    <div class="journal-grid" id="journal-grid"></div>
+    <section class="journey-section">
+      <p class="journey-intro">
+        on my substack newsletter I talk about my journey, insights I pick
+        up along the way &amp; concious introspection across all things
+        neurotech + social entrepreneurship. join me in building the future
+        we deserve!
+      </p>
+      <div class="article-stack-wrap" id="substack-stack"></div>
+    </section>
+
+    <section class="journey-section">
+      <p class="journey-intro">
+        on medium, I dive into what I learn while working in clinics,
+        research labs, startups &amp; VC settings centered around neurotech
+        &amp; BCIs. from learning to write my first code, prototyping
+        various BCI projects, and understanding hardware and signal
+        processing to breaking down neuroscience in theory &amp; clinical
+        settings and deep-dives of research I do in the space. feel free to
+        follow along and learn with me.
+      </p>
+      <div class="article-stack-wrap" id="medium-stack"></div>
+    </section>
 
     <footer class="foot">
       <p>laasya, built with passion.</p>
