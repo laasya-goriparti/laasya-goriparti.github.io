@@ -25,8 +25,8 @@
 // place below; send over that list (or just edit directly here) and I'll
 // swap them in.
 const SHOWCASE_ITEMS = [
-  { file: "showcaseone.jpg", link: "", caption: "hosted a women founders dinner w/ foundess @ sxsw" },
+  { file: "showcaseone.jpg", link: "", caption: "hosted dinner w/ foundess @ sxsw" },
   { file: "showcasetwo.jpg", link: "", caption: "hosted art therapy @ special needs care homes" },
   { file: "showcasethree.jpg", link: "", caption: "hosted hackerhouse @ a16z sf tech week" },
-  { file: "showcasefour.jpg", link: "", caption: "hosted neurotech mixer w/ neuronyc @ ny tech week" },
+  { file: "showcasefour.jpg", link: "", caption: "hosted mixer w/ neuronyc @ ny tech week" },
 ];
